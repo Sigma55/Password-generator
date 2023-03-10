@@ -1,12 +1,41 @@
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
+import java.io.File;  // Import the File class
+import java.io.IOException;
 
 public class main {
 
     public static void main(String[] args) {
-        System.out.println(generator().toString());
+        //System.out.println(generator().toString());
+
+        // create file
+
+        try {
+            File myObj = new File("filename.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        //writte in file
+        try {
+            FileWriter myWriter = new FileWriter("filename.txt");
+            myWriter.write( "Voici vos mots de passes : " + generator().toString());
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
 
 
 
